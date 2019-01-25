@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jaxws:bindings
+	wsdlLocation="Trust40WebService.wsdl"
+    xmlns:jaxws="http://java.sun.com/xml/ns/jaxws"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/jaxb http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/jaxb/bindingschema_2_0.xsd
+    http://hyperjaxb3.jvnet.org/ejb/schemas/customizations https://raw.githubusercontent.com/highsource/hyperjaxb3/master/ejb/schemas/customizations/src/main/resources/customizations.xsd">
+
+    <jaxws:bindings node="wsdl:definitions/wsdl:types/xs:schema">
+        <jaxb:globalBindings>
+        	<jaxb:serializable uid="1"/>
+            <jaxb:javaType name="java.util.Date" xmlType="xs:dateTime"
+                parseMethod="org.apache.cxf.xjc.runtime.DataTypeAdapter.parseDateTime"
+                printMethod="org.apache.cxf.xjc.runtime.DataTypeAdapter.printDateTime"/>
+            <jaxb:javaType name="java.util.Date" xmlType="xs:date"
+                parseMethod="org.apache.cxf.xjc.runtime.DataTypeAdapter.parseDate"
+                printMethod="org.apache.cxf.xjc.runtime.DataTypeAdapter.printDate"/>
+        </jaxb:globalBindings>
+    </jaxws:bindings>
+</jaxws:bindings>

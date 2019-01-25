@@ -1,0 +1,112 @@
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ws.trust40.cas.de"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http"
+	name="Trust40WebService" targetNamespace="http://ws.trust40.cas.de">
+	<wsdl:types>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="http://ws.trust40.cas.de" xmlns:ns1="http://ws.trust40.cas.de"
+			elementFormDefault="qualified" targetNamespace="http://ws.trust40.cas.de"
+			version="1.0">
+			<xs:import namespace="http://ws.trust40.cas.de" />
+			<xs:element name="canShare" type="tns:canShare" />
+			<xs:element name="canShareResponse" type="tns:canShareResponse" />
+			<xs:complexType name="canShare">
+				<xs:sequence>
+					<xs:element name="shareRequestDescription" type="ns1:shareRequestDescription" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="canShareResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="shareRequestResponse"
+						type="ns1:shareRequestResponse" />
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="http://ws.trust40.cas.de"
+			elementFormDefault="qualified" targetNamespace="http://ws.trust40.cas.de"
+			version="1.0">
+			<xs:complexType name="shareRequestDescription">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="sourceSystem" type="xs:anyURI" />
+					<xs:element minOccurs="0" name="destinationSystem" type="xs:anyURI" />
+					<xs:element minOccurs="0" name="requestCreator" type="tns:userInformation" />
+					<xs:element maxOccurs="unbounded" minOccurs="0"
+						name="destinationUsers" nillable="true" type="tns:userInformation" />
+					<xs:element maxOccurs="unbounded" minOccurs="0"
+						name="entityIDsToShare" nillable="true" type="xs:string" />
+					<xs:element minOccurs="0" name="businessProcess" type="tns:businessProcess" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="userInformation">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="userIdentifier" type="xs:string" />
+					<xs:element minOccurs="0" name="currentLocation" type="xs:string" />
+					<xs:element minOccurs="0" name="role" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="shareRequestResponse">
+				<xs:complexContent>
+					<xs:extension base="tns:trust40RequestResponse">
+						<xs:sequence>
+							<xs:element name="canShare" type="xs:boolean" />
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+			<xs:complexType name="trust40RequestResponse">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="errorDescription" type="tns:errorDescription" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="errorDescription">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="errorDescription" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:simpleType name="businessProcess">
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="STANDARD" />
+					<xs:enumeration value="ERROR" />
+					<xs:enumeration value="LEGAL_INVESTIGATION" />
+					<xs:enumeration value="AUDIT" />
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="canShareResponse">
+		<wsdl:part element="tns:canShareResponse" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="canShare">
+		<wsdl:part element="tns:canShare" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="Trust40WebService">
+		<wsdl:operation name="canShare">
+			<wsdl:input message="tns:canShare" name="canShare">
+			</wsdl:input>
+			<wsdl:output message="tns:canShareResponse" name="canShareResponse">
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="Trust40WebServiceSoapBinding" type="tns:Trust40WebService">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="canShare">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="canShare">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="canShareResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="Trust40WebService">
+		<wsdl:port binding="tns:Trust40WebServiceSoapBinding" name="Trust40WebServicePort">
+			<soap:address
+				location="http://CPJ-51-561:8090/Trust40WebService" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
