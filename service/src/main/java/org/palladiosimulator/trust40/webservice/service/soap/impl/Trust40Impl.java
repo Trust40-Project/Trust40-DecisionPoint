@@ -22,7 +22,7 @@ public class Trust40Impl implements Trust40WebService {
 		
 		ShareRequestResponse response = objectFactory.createShareRequestResponse();
 		response.setCanShare(true);
-		LOGGER.info("Answerting with default answer:{}", response);
+		LOGGER.info("Answering with default answer:{}", response);
 		
 		return response;
 	}
