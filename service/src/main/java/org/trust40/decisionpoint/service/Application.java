@@ -1,4 +1,4 @@
-package org.palladiosimulator.trust40.webservice.service;
+package org.trust40.decisionpoint.service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

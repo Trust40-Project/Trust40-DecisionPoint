@@ -9,7 +9,7 @@
 		<version>2.1.1.RELEASE</version>
 		<relativePath></relativePath>
 	</parent>
-	<groupId>org.palladiosimulator.trust40.webservice</groupId>
+	<groupId>org.trust40.decisionpoint</groupId>
 	<artifactId>service</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 
@@ -39,7 +39,7 @@
 			<artifactId>jaxb-runtime</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.palladiosimulator.trust40.webservice</groupId>
+			<groupId>org.trust40.decisionpoint</groupId>
 			<artifactId>api</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>

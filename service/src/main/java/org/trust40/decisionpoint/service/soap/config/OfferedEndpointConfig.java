@@ -1,4 +1,4 @@
-package org.palladiosimulator.trust40.webservice.service.soap.config;
+package org.trust40.decisionpoint.service.soap.config;
 
 import javax.xml.ws.Endpoint;
 
