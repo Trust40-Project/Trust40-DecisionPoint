@@ -4,15 +4,15 @@ import java.util.Collection;
 
 public abstract class Rule {
 
-	private int operationId;
+	private String operationId;
 	private Collection<String> subjectIds;
 	private Collection<String> objectIds;
 
-	public int getOperationId() {
+	public String getOperationId() {
 		return operationId;
 	}
 
-	public void setOperationId(int operationId) {
+	public void setOperationId(String operationId) {
 		this.operationId = operationId;
 	}
 
