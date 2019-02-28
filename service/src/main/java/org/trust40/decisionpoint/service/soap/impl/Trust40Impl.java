@@ -1,16 +1,19 @@
 package org.trust40.decisionpoint.service.soap.impl;
 
+import javax.jws.WebService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.trust40.decisionpoint.service.domain.DecisionService;
+import org.trust40.trust40webservice.ObjectFactory;
+import org.trust40.trust40webservice.ShareRequest;
+import org.trust40.trust40webservice.ShareRequestResponse;
+import org.trust40.trust40webservice.Trust40WebService;
 
-import de.cas.trust40.ws.ObjectFactory;
-import de.cas.trust40.ws.ShareRequestDescription;
-import de.cas.trust40.ws.ShareRequestResponse;
-import de.cas.trust40.ws.Trust40WebService;
 
 @Component
+@WebService(targetNamespace = "http://trust40.org/Trust40WebService/")
 public class Trust40Impl implements Trust40WebService {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(Trust40Impl.class);
@@ -22,7 +25,7 @@ public class Trust40Impl implements Trust40WebService {
 	}
 	
 	@Override
-	public ShareRequestResponse canShare(ShareRequestDescription shareRequestDescription) {
+	public ShareRequestResponse canShare(ShareRequest shareRequestDescription) {
 		
 		LOGGER.info("Received request:\n{}", shareRequestDescription);
 		

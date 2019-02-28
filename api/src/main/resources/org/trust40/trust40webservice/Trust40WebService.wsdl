@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://trust40.org/Trust40WebService/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Trust40WebService"
+	targetNamespace="http://trust40.org/Trust40WebService/">
+	<wsdl:types>
+		<xsd:schema
+			targetNamespace="http://trust40.org/Trust40WebService/">
+			<xsd:complexType name="ShareRequest">
+				<xsd:attribute name="subjectId" type="xsd:string"></xsd:attribute>
+				<xsd:attribute name="objectId" type="xsd:string"></xsd:attribute>
+				<xsd:attribute name="operationId" type="xsd:string"></xsd:attribute>
+			</xsd:complexType>
+			<xsd:complexType name="ShareRequestResponse">
+				<xsd:attribute name="canShare" type="xsd:boolean"></xsd:attribute>
+				<xsd:attribute name="description" type="xsd:string"></xsd:attribute>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="canShareResponse">
+		<wsdl:part name="parameters" type="tns:ShareRequestResponse" />
+	</wsdl:message>
+	<wsdl:message name="canShareRequest">
+		<wsdl:part name="parameters" type="tns:ShareRequest"></wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="Trust40WebService">
+		<wsdl:operation name="canShare">
+			<wsdl:input message="tns:canShareRequest"></wsdl:input>
+			<wsdl:output message="tns:canShareResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="Trust40WebServiceSOAP"
+		type="tns:Trust40WebService">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="canShare">
+			<soap:operation
+				soapAction="http://trust40.org/Trust40WebService/canShare" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="Trust40WebService">
+		<wsdl:port binding="tns:Trust40WebServiceSOAP"
+			name="Trust40WebServiceSOAP">
+			<soap:address location="http://www.example.org/" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

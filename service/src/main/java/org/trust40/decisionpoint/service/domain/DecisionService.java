@@ -3,13 +3,12 @@ package org.trust40.decisionpoint.service.domain;
 import java.util.Collection;
 
 import org.trust40.decisionpoint.service.domain.dto.AllowRule;
-
-import de.cas.trust40.ws.ShareRequestDescription;
+import org.trust40.trust40webservice.ShareRequest;
 
 public interface DecisionService {
 
 	void setRules(Collection<AllowRule> activeRules);
 
-	boolean canShare(ShareRequestDescription shareRequestDescription);
+	boolean canShare(ShareRequest shareRequestDescription);
 
 }

@@ -62,12 +62,13 @@
 							<sourceRoot>${project.build.directory}/generated/cxf</sourceRoot>
 							<wsdlOptions>
 								<wsdlOption>
-									<wsdl>${basedir}/src/main/resources/trust40/Trust40WebService.wsdl</wsdl>
+									<wsdl>${basedir}/src/main/resources/org/trust40/trust40webservice/Trust40WebService.wsdl</wsdl>
 									<!--
 									<bindingFiles>
 										<bindingFile>${basedir}/src/main/resources/trust40/binding.xml</bindingFile>
 									</bindingFiles>
 									-->
+									<wsdlLocation>Trust40WebService.wsdl</wsdlLocation>
 									<extraargs>
 										<extraarg>-xjc-Xfluent-api</extraarg>
 										<extraarg>-xjc-Xts</extraarg>

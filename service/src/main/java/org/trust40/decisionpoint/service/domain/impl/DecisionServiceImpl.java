@@ -6,8 +6,7 @@ import java.util.Collections;
 import org.springframework.stereotype.Service;
 import org.trust40.decisionpoint.service.domain.DecisionService;
 import org.trust40.decisionpoint.service.domain.dto.AllowRule;
-
-import de.cas.trust40.ws.ShareRequestDescription;
+import org.trust40.trust40webservice.ShareRequest;
 
 @Service
 public class DecisionServiceImpl implements DecisionService {
@@ -22,7 +21,7 @@ public class DecisionServiceImpl implements DecisionService {
 	}
 
 	@Override
-	public boolean canShare(ShareRequestDescription shareRequestDescription) {
+	public boolean canShare(ShareRequest shareRequestDescription) {
 		// TODO Implement decision making based on rules
 		return false;
 	}
