@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,7 @@ import org.trust40.decisionpoint.service.domain.event.EnsembleResultsInvalidated
 @Service
 public class ContextUpdateServiceImpl implements ContextUpdateService {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(ContextUpdateServiceImpl.class);
 	private final ExecutorService executor = Executors.newSingleThreadExecutor();
 	private final List<ContextDescription> pendingContextUpdates = new ArrayList<>();
 	private final EnsembleService ensembleService;
@@ -33,6 +36,7 @@ public class ContextUpdateServiceImpl implements ContextUpdateService {
 		synchronized(pendingContextUpdates) {
 			boolean queueResult = pendingContextUpdates.add(description);
 			pendingContextUpdates.notifyAll();
+			LOGGER.info("Queued context update {}", description);
 			return queueResult;			
 		}
 	}
@@ -50,6 +54,7 @@ public class ContextUpdateServiceImpl implements ContextUpdateService {
 	private void processAllPendingUpdates() throws InterruptedException {
 		List<ContextDescription> queue = drainPendingUpdates();
 		if (!queue.isEmpty()) {
+			LOGGER.info("Starting update of ensembles with {} context updates.", queue.size());
 			synchronized (ensembleService) {
 				queue.stream().forEach(ensembleService::processContextUpdate);
 				applicationEventPublisher.publishEvent(new EnsembleResultsInvalidatedEvent(this));

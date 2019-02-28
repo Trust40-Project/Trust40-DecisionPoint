@@ -22,11 +22,6 @@ public class ContextResource implements IContextUpdate {
 		this.contextUpdateService = contextUpdateService;
 	}
 	
-	@RequestMapping(value="/bla", method=RequestMethod.GET)
-	public String get() {
-		return "test";
-	}
-	
 	@Override
 	@RequestMapping(method=RequestMethod.POST, value="/context")
 	public ContextUpdateSchedulingStatus update(ContextDescription description) {
